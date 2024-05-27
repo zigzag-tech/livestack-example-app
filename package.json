@@ -1,0 +1,20 @@
+{
+  "name": "create-my-livestack",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "tsc",
+    "create": "ts-node src/index.ts"
+  },
+  "bin": {
+    "create-my-livestack": "./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.12.12",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.22",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
