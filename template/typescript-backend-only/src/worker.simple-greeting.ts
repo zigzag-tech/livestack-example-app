@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { JobSpec, LiveEnv } from "@livestack/core";
+import { JobSpec, LiveEnv, sleep } from "@livestack/core";
 import { getLocalTempFileStorageProvider } from "@livestack/core";
 
 const liveEnvP = LiveEnv.create({
-  projectId: "EXAMPLE_PROJECT",
+  projectId: "EXAMPLE_PROJECT" + Date.now(),
   storageProvider: getLocalTempFileStorageProvider("/tmp/livestack"),
 });
 
@@ -38,11 +38,12 @@ if (module === require.main) {
     for (const name of names) {
       await input.feed({ name });
     }
-    await input.terminate();
+    // input("default").terminate();
 
-    for await (const data of output) {
+    for await (const data of output("default")) {
       console.log(data.data.greeting);
     }
+
     console.log("done");
     process.exit(0);
   })();
