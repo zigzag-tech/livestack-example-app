@@ -109,20 +109,17 @@ export const SpeechComponents: React.FC = () => {
             2. Speech transcripts will pop up here
           </h2>
           <br />
-          <>
-            <h2>Transcript</h2>
-            <article
-              style={{
-                maxWidth: "100%",
-              }}
-            >
-              {transcription.map((transcript, i) => (
-                <span key={i} className="text-sm">
-                  {transcript.data.transcript}
-                </span>
-              ))}
-            </article>
-          </>
+          <article
+            style={{
+              maxWidth: "100%",
+            }}
+          >
+            {transcription.map((transcript, i) => (
+              <span key={i} className="text-sm">
+                {transcript.data.transcript}
+              </span>
+            ))}
+          </article>
         </div>
       </div>
       <div className="col-span-2">
@@ -131,10 +128,7 @@ export const SpeechComponents: React.FC = () => {
             3. Periodically, a one-liner short summary is generated
           </h2>
           <br />
-          <>
-            <h2>Title</h2>
-            <p>{summarizedTitle?.data.summarizedTitle}</p>
-          </>
+          <p>{summarizedTitle?.data.summarizedTitle}</p>
           <br />
           {translation && (
             <div>
