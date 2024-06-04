@@ -1,27 +1,16 @@
 {
-    "compilerOptions": {
-        "module": "CommonJS",
-        "outDir": "dist",
-        "target": "ES5",
-        "pretty": true,
-        "moduleResolution": "node",
-        "noEmit": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "resolveJsonModule": true,
-        "preserveConstEnums": true,
-        "removeComments": false,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "isolatedModules": false,
-        "strict": true,
-        "strictNullChecks": true,
-        "downlevelIteration": true,
-        "declaration": true,
-        "jsx": "react",
-        "noImplicitAny": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2022",
+    "module": "ES2020",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "sourceMap": false,
+    "noUnusedLocals": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

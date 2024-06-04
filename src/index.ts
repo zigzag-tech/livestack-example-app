@@ -1,7 +1,8 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import path from "path";
-import fs from "fs-extra";
+import fs from "fs";
+import { fileURLToPath } from "node:url";
 import inquirer from "inquirer";
 
 const main = async () => {
@@ -19,14 +20,14 @@ const main = async () => {
   });
 
   const destination = path.join(process.cwd(), name);
-  const templateDir = path.join(
-    __dirname,
+  const templateDir = path.resolve(
+    fileURLToPath(import.meta.url),
     "..",
     "template",
     language.toLowerCase()
   );
 
-  fs.copySync(templateDir, destination);
+  fs.cpSync(templateDir, destination, { recursive: true });
 
   console.log(`Project created at ${destination} using ${language}`);
 };
