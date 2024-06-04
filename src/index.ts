@@ -3,21 +3,25 @@
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "node:url";
-import inquirer from "inquirer";
+import prompts from "prompts";
 
 const main = async () => {
-  const { name } = await inquirer.prompt({
-    type: "input",
-    name: "name",
-    message: "Project name?",
-  });
-
-  const { language } = await inquirer.prompt({
-    type: "list",
-    name: "language",
-    message: "Initialize with JavaScript or TypeScript?",
-    choices: ["JavaScript", "TypeScript"],
-  });
+  const { name, language } = await prompts([
+    {
+      type: "text",
+      name: "name",
+      message: "Project name?",
+    },
+    {
+      type: "select",
+      name: "language",
+      message: "Initialize with JavaScript or TypeScript?",
+      choices: [
+        { title: "JavaScript", value: "JavaScript" },
+        { title: "TypeScript", value: "TypeScript" },
+      ],
+    },
+  ]);
 
   const destination = path.join(process.cwd(), name);
   const templateDir = path.resolve(

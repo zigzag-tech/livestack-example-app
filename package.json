@@ -1,19 +1,21 @@
 {
   "name": "create-livestack",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "scripts": {
-    "build": "rimraf dist && tsc && rsync -av --exclude=node_modules --exclude=.env template dist"
+    "build": "rimraf dist && unbuild && rsync -av --exclude=node_modules --exclude=.env template dist"
   },
   "bin": {
-    "create-livestack": "./dist/index.js"
+    "create-livestack": "./dist/index.mjs"
   },
   "type": "module",
   "devDependencies": {
-    "@types/inquirer": "^9.0.7",
-    "@types/node": "^20.12.12",
-    "inquirer": "^9.2.22",
+    "@types/prompts": "^2.4.9",
+    "prompts": "^2.4.2",
     "rimraf": "^5.0.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
-  }
+    "unbuild": "^2.0.0"
+  },
+  "main": "dist/index.mjs",
+  "files": [
+    "dist"
+  ]
 }
