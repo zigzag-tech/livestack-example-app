@@ -3,37 +3,58 @@
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "node:url";
-import prompts from "prompts";
+import { Command } from "commander";
+
+const templates = [
+  "typescript-speech-app",
+  "typescript-backend-only",
+  "typescript-setup-only",
+];
+const templateDefault = "typescript-setup-only";
 
 const main = async () => {
-  const { name, language } = await prompts([
-    {
-      type: "text",
-      name: "name",
-      message: "Project name?",
-    },
-    {
-      type: "select",
-      name: "language",
-      message: "Initialize with JavaScript or TypeScript?",
-      choices: [
-        { title: "JavaScript", value: "JavaScript" },
-        { title: "TypeScript", value: "TypeScript" },
-      ],
-    },
-  ]);
+  let projectDir: string | null = null;
+  let template: string = templateDefault;
 
-  const destination = path.join(process.cwd(), name);
+  const program = new Command();
+  program
+    .command("create-livestack")
+    .argument("<project-directory>")
+    .usage("<project-directory> [options]")
+    .option(
+      "--template [path-to-template]",
+      `specify a template for the created project: ${templates.join(", ")}`,
+      templateDefault
+    )
+    .action((projectDirName, options) => {
+      projectDir = projectDirName;
+
+      if (!templates.includes(options.template)) {
+        console.error(
+          `Invalid template. Using default template: ${templateDefault}`
+        );
+      } else {
+        template = options.template;
+      }
+    })
+    .parse(process.argv);
+
+  if (!projectDir) {
+    console.error("Project directory is required");
+    return;
+  }
+  
+  const destination = path.join(process.cwd(), projectDir);
   const templateDir = path.resolve(
     fileURLToPath(import.meta.url),
     "..",
     "template",
-    language.toLowerCase()
+    template
   );
 
   fs.cpSync(templateDir, destination, { recursive: true });
 
-  console.log(`Project created at ${destination} using ${language}`);
+  console.log(`Project created at ${destination} using template ${template}`);
 };
 
 main().catch((err) => {
