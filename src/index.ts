@@ -9,6 +9,7 @@ const templates = [
   "typescript-speech-app",
   "typescript-backend-only",
   "typescript-setup-only",
+  "typescript-live-counter",
 ];
 const templateDefault = "typescript-setup-only";
 

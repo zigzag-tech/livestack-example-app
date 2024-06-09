@@ -1,8 +1,8 @@
 {
   "name": "create-livestack",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
-    "build": "rimraf dist && unbuild && rsync -av --exclude=node_modules --exclude=.env template dist"
+    "build": "rimraf dist && unbuild && rsync -av --exclude=node_modules --exclude=.env --exclude=package-lock.json template dist"
   },
   "bin": {
     "create-livestack": "./dist/index.mjs"
