@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "NODE_OPTIONS='-r dotenv/config' ts-node --project tsconfig.json src/server/index.ts"
+    "dev": "ts-node -r dotenv/config --project tsconfig.json src/server/index.ts"
   },
   "author": "",
   "license": "MIT",

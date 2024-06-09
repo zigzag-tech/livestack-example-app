@@ -7,8 +7,8 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "dev": "NODE_OPTIONS='-r dotenv/config' tsx --tsconfig tsconfig.json src/index.ts",
-    "test": "NODE_OPTIONS='-r dotenv/config' tsx --tsconfig tsconfig.json src/worker.simple-greeting.ts"
+    "dev": "ts-node -r dotenv/config --project tsconfig.json src/index.ts",
+    "test": "ts-node -r dotenv/config --project tsconfig.json src/worker.simple-greeting.ts"
   },
   "author": "",
   "license": "MIT",
