@@ -2,6 +2,7 @@
 
 import path from "path";
 import fs from "fs";
+import { execSync } from "child_process";
 import { fileURLToPath } from "node:url";
 import { Command } from "commander";
 
@@ -56,6 +57,22 @@ const main = async () => {
   fs.cpSync(templateDir, destination, { recursive: true });
 
   console.log(`Project created at ${destination} using template ${template}`);
+
+  try {
+    execSync("git init --initial-branch=main", { cwd: destination, stdio: "inherit" });
+    console.log("Initialized a new git repository.");
+  } catch (err) {
+    console.error("Error initializing git repository:", err);
+    return;
+  }
+
+  try {
+    execSync("npm install", { cwd: destination, stdio: "inherit" });
+    console.log("Installed npm dependencies.");
+  } catch (err) {
+    console.error("Error installing npm dependencies:", err);
+    return;
+  }
 };
 
 main().catch((err) => {

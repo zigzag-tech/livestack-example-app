@@ -1,6 +1,6 @@
 {
   "name": "create-livestack",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "scripts": {
     "build": "rimraf dist && unbuild && rsync -av --exclude=node_modules --exclude=.env --exclude=package-lock.json template dist"
   },
@@ -9,7 +9,6 @@
   },
   "type": "module",
   "devDependencies": {
-    "@types/prompts": "^2.4.9",
     "commander": "^12.1.0",
     "rimraf": "^5.0.7",
     "unbuild": "^2.0.0"
